@@ -28,10 +28,17 @@ header h1 {
   margin: 0;
 }
 
-/* Optional: Remove blue outline on image link click */
+/* Remove blue outline on image link click */
 .logo-title a {
+  text-decoration: none;         /* remove underline */
+  color: inherit;                /* keep same color as surrounding text */
   display: inline-block;
   line-height: 0; /* removes extra vertical space */
+}
+.logo-ti
+tle a:visited {
+  color: inherit;                /* stop it from turning purple */
+  text-decoration: none;        /* also ensure no underline here */
 }
     nav a {
       margin-left: 1rem;
