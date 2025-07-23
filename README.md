@@ -1,2 +1,2 @@
 # phylostrata
-Phylostrata data at MaizeGDB
+Webtool to visualize phylostrata data at MaizeGDB
