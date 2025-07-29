@@ -8,196 +8,181 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
 
-.page-title {
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
+        .page-title {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
 
-.thermometer-container {
-    position: relative;
-    width: 100%;
-    margin: 0px auto;
-}
+        .thermometer-container {
+            position: relative;
+            width: 100%;
+            margin: 0px auto;
+        }
 
-.thermometer-bar {
-    position: relative;
-    width: 100%;
-    height: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 0px;
-    margin-bottom: 15px;
-    border: 3px solid #3498db;
-    display: flex;
-    overflow: hidden;
-}
+        .thermometer-bar {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 0px;
+            margin-bottom: 15px;
+            border: 3px solid #3498db;
+            display: flex;
+            overflow: hidden;
+        }
 
-.thermometer-bar-fill {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background-color: #3498db;
-    border-radius: 10px 0 0 10px;
-}
+        .thermometer-bar-fill {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 10px 0 0 10px;
+        }
 
-.timeline {
-    position: absolute;
-    top: -10px;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .timeline {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.timeline-tickmark {
-    position: absolute;
-    width: 4px;
-    background-color: #333;
-    top: 0%;
-    left: calc((100% / 14) * (var(--i) + 0.5));
-    text-align: center;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-}
+        .timeline-tickmark {
+            position: absolute;
+            width: 4px;
+            background-color: #333;
+            top: 0%;
+            left: calc((100% / 14) * (var(--i) + 0.5));
+            text-align: center;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
 
-.alt-caption {
-    position: absolute;
-    bottom: 115px;
-    font-size: 12px;
-    color: #333;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
+        .alt-caption {
+            position: absolute;
+            bottom: 115px;
+            font-size: 12px;
+            color: #333;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
 
-.timeline-tickmark::before {
-    content: attr(data-label);
-    position: absolute;
-    top: 100%;
-    font-size: 12px;
-    color: #333;
-    left: 50%;
-    transform: translateX(-50%) rotate(-45deg);
-    text-align: center;
-    font-weight: bold;
-    white-space: pre-wrap;
-}
+        .timeline-tickmark::before {
+            content: attr(data-label);
+            position: absolute;
+            top: 100%;
+            font-size: 12px;
+            color: #333;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+            text-align: center;
+            font-weight: bold;
+            white-space: pre-wrap;
+        }
 
-.timeline-labels {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    table-layout: fixed;
-    margin-bottom: 20px;
-}
+        .timeline-labels {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            table-layout: fixed;
+            margin-bottom: 20px;
+        }
 
-.timeline-labels td {
-    border: none;
-    padding: 2px;
-    font-size: 12px;
-    color: #333;
-    vertical-align: middle;
-}
+        .timeline-labels td {
+            border: none;
+            padding: 2px;
+            font-size: 12px;
+            color: #333;
+            vertical-align: middle;
+        }
 
-.timeline-labels img {
-    height: 60px;
-    display: block;
-    margin: 0 auto;
-}
+        .timeline-labels img {
+            height: 60px;
+            display: block;
+            margin: 0 auto;
+        }
 
-.phylostrata-wrapper {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
+        .phylostrata-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        }
 
-.img-wrapper {
-  background-color: white;
-  padding: 5px;
-  display: inline-block;
-  border-radius: 4px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-}
+        .img-wrapper {
+        background-color: white;
+        padding: 5px;
+        display: inline-block;
+        border-radius: 4px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
 
-.phylostrata-row {
-    display: flex;
-    align-items: flex-start;
-}
+        .phylostrata-row {
+            display: flex;
+            /* align-items: flex-start; */
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.thermometer-labels-column {
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-    text-align: left;
-    width: 200px;
-}
+        .thermometer-labels-column {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+            text-align: left;
+            width: 200px;
+        }
 
-.gene-label {
-  font-size: 12px;
-  margin-bottom: 0;
-  color: #333;
-  white-space: nowrap;
-  height: 30px; /* Set fixed height */
-  display: flex;
-  align-items: center;
-}
+        .gene-label {
+            font-size: 12px;
+            margin-bottom: 0;
+            margin-right: 10px;
+            color: #333;
+            white-space: nowrap;
+            height: 30px; /* Set fixed height */
+            width: 200px;
+            display: flex;
+            align-items: center;
+        }
 
+        .thermometer-main-column {
+            flex-grow: 1;
+        }
 
+        .spacer-table {
+            width: 100%;
+            text-align: center;
+            table-layout: fixed;
+            margin-bottom: 114px;
+        }
 
-.thermometer-main-column {
-    flex-grow: 1;
-}
-
-.spacer-table {
-    width: 100%;
-    text-align: center;
-    table-layout: fixed;
-    margin-bottom: 114px;
-}
-
-.phylostrata-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.gene-label {
-  width: 200px;
-  font-size: 12px;
-  white-space: nowrap;
-  margin-right: 10px;
-}
-
-/* .thermometer-block {
-  flex-grow: 1;
-  margin-left: 10px;
-} */
-.thermometer-block {
-  margin-left: 10px;
-  height: 30px; /* Match label height */
-  display: flex;
-  align-items: center;
-}
-/* Hide checkboxes when hideCheckboxes parameter is present */
-.hide-checkboxes .img-checkbox {
-    display: none !important;
-}
+        .thermometer-block {
+            margin-left: 10px;
+            height: 30px; /* Match label height */
+            display: flex;
+            align-items: center;
+        }
+        /* Hide checkboxes when hideCheckboxes parameter is present */
+        .hide-checkboxes .img-checkbox {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -207,6 +192,7 @@ body {
     <div class="phylostrata-wrapper">
         <div class="phylostrata-row">
             <div class="thermometer-labels-column" id="gene-labels">
+                <!-- spacer table to make gene labels line up with bars -->
                 <table class="spacer-table">
                     <tr><td> </td></tr>
                     <tr><td> </td></tr>
@@ -215,6 +201,7 @@ body {
             </div>
 
             <div class="thermometer-main-column">
+                <!-- example organism labels and images -->
                 <table class="timeline-labels">
                     <tr>
                         <td>Bacteria</td>
@@ -249,26 +236,26 @@ body {
                         <td>(<i>Zea mays mays</i>)</td>
                     </tr>
                     <tr>
-                        <td><img src="stratum_images/ecoli.png"></td>
-                        <td><img src="stratum_images/celegans.png"></td>
-                        <td><img src="stratum_images/algae.png"></td>
-                        <td><img src="stratum_images/stonewort.png"></td>
-                        <td><img src="stratum_images/fern2.png"></td>
-                        <td><img src="stratum_images/arabidopsis2.png"></td>
-                        <td><img src="stratum_images/banana.png"></td>
-                        <td><img src="stratum_images/pineapple2.png"></td>
-                        <td><img src="stratum_images/rice2.png"></td>
-                        <td><img src="stratum_images/switchgrass2.png"></td>
-                        <td><img src="stratum_images/sorghum2.png"></td>
-                        <td><img src="stratum_images/ZeaDiploperennisTransparent.png"></td>
-                        <td><img src="stratum_images/ZeaMaysMexicanaTransparent.png"></td>
-                        <td><img src="stratum_images/ZeaMaysMaysTransparent.png"></td>
+                        <td><img src="stratum_images/ecoli.png" alt="E. coli"></td>
+                        <td><img src="stratum_images/celegans.png" alt="C. elegans"></td>
+                        <td><img src="stratum_images/algae.png" alt="Algae"></td>
+                        <td><img src="stratum_images/stonewort.png" alt="Stonewort"></td>
+                        <td><img src="stratum_images/fern2.png" alt="Fern"></td>
+                        <td><img src="stratum_images/arabidopsis2.png" alt="Arabidopsis"></td>
+                        <td><img src="stratum_images/banana.png" alt="Banana"></td>
+                        <td><img src="stratum_images/pineapple2.png" alt="Pineapple"></td>
+                        <td><img src="stratum_images/rice2.png" alt="Rice"></td>
+                        <td><img src="stratum_images/switchgrass2.png" alt="Switchgrass"></td>
+                        <td><img src="stratum_images/sorghum2.png" alt="Sorghum"></td>
+                        <td><img src="stratum_images/ZeaDiploperennisTransparent.png" alt="Zea diploperennis"></td>
+                        <td><img src="stratum_images/ZeaMaysMexicanaTransparent.png" alt="Zea mays mexicana"></td>
+                        <td><img src="stratum_images/ZeaMaysMaysTransparent.png" alt="Zea mays mays"></td>
                     </tr>
                 </table>
 
                 <div class="thermometer-container">
                     <div id="thermometer-list"></div>
-
+                    <!-- tickmarks for each phylostratum -->
                     <div class="timeline">
             <div class="timeline-tickmark" style="--i: 0;" data-label="1:
 Cellular Organisms"></div>
@@ -306,9 +293,8 @@ Subspecies: Zea mays mays">
     </div>
     
     <script>
-window.onload = function() {
+window.onload = function() { 
     const thermometerList = document.getElementById('thermometer-list');
-    const pageTitle = document.getElementById('page-title');
 
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -319,24 +305,20 @@ window.onload = function() {
     const pageIdsParam = getQueryParam('page');
     const pageIds = pageIdsParam.split(',');
     
-    // Check if checkboxes should be hidden
+    // Check if checkboxes should be hidden (for downloaded image vs search result image)
     const hideCheckboxes = getQueryParam('hideCheckboxes');
 if (hideCheckboxes === 'true') {
     document.body.classList.add('hide-checkboxes');
-    
-    // More aggressive approach - remove checkboxes entirely after page loads
-    setTimeout(() => {
-        const checkboxes = document.querySelectorAll('.img-checkbox');
-        checkboxes.forEach(checkbox => checkbox.remove());
-    }, 500);
-}
 
-    fetch('gene_fill.json')
+}
+    
+    fetch('gene_fill.json') 
         .then(response => response.json())
         .then(jsonData => {
             // Clear list
             thermometerList.innerHTML = '';
 
+            // Make filled bar with label and checkbox (if not hidden) for each gene ID
             pageIds.forEach(pageId => {
                 const pageData = jsonData.pages.find(page => page.id === pageId);
 
@@ -344,7 +326,8 @@ if (hideCheckboxes === 'true') {
                     // Create thermometer container
                     const block = document.createElement('div');
                     block.classList.add('thermometer-block');
-
+                    
+                    // Create the filled thermometer bar for this gene
                     block.innerHTML = `
                       <div class="thermometer-bar">
                           <div class="thermometer-bar-fill" style="width: ${pageData.fill_pct}%"></div>
@@ -362,7 +345,7 @@ if (hideCheckboxes === 'true') {
                     checkbox.id = `checkbox_${pageData.id}`;
                     checkbox.style.marginRight = "6px";
 
-                    // Create the link
+                    // Create the link to the gene details page
                     const link = document.createElement('a');
                     link.href = `../gene_pages/index.html?page=${pageData.id}`;
                     link.textContent = pageData.id;
@@ -370,7 +353,7 @@ if (hideCheckboxes === 'true') {
                     link.style.color = '#3498db';
                     link.style.textDecoration = 'underline';
 
-                    // Add the rest of the text
+                    // Add the rest of the text (phylostratum number)
                     const textSpan = document.createElement('span');
                     textSpan.textContent = `: Phylostratum ${pageData.strata}`;
 
@@ -396,7 +379,7 @@ if (hideCheckboxes === 'true') {
             console.error('Error loading JSON:', error);
         });
 
-    // Once thermometer bars are loaded
+    // Once thermometer bars are loaded, add tickmarks
     setTimeout(() => {
         const thermometerList = document.getElementById('thermometer-list');
         const timeline = document.querySelector('.timeline');
@@ -411,13 +394,14 @@ if (hideCheckboxes === 'true') {
         });
     }, 100);
 
-    // Call this function after your thermometer bars are created
+    // after thermometer bars loaded, set up checkbox communication
     setTimeout(() => {
         setupCheckboxCommunication();
     }, 200);
 };
 
-// Add this AFTER your existing window.onload function
+// the following functions handle checkbox communication with the parent window
+
 function setupCheckboxCommunication() {
     const checkboxes = document.querySelectorAll('.img-checkbox');
     
@@ -430,7 +414,6 @@ function setupCheckboxCommunication() {
     sendSelectionToParent();
 }
 
-// Listen for messages from parent window
 window.addEventListener('message', function(event) {
     if (event.origin !== window.location.origin) return;
     
@@ -468,7 +451,6 @@ function sendSelectionToParent() {
         selectedCount: checkedCount
     }, '*');
     
-    console.log('Sending to parent:', selectedGenes);
 }
 </script>
 </body>

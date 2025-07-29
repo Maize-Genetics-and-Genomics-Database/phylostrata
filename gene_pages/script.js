@@ -1,3 +1,4 @@
+// Get the page ID from the URL 
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -66,7 +67,7 @@ function generateTable(pageData) {
         rowElement.appendChild(detectedInCell);
         
 
-        // Hit cells (sub-columns)
+        // Best hit cells (sub-columns): best organism, E score, and gene name
         const hitsData = row.hits;
         
         const BestOrgCell = document.createElement('td');
@@ -78,16 +79,16 @@ function generateTable(pageData) {
         BestECell.textContent = hitsData["BestE"];
         rowElement.appendChild(BestECell);
 
-        //Make best hit into link too
+        //Make best hit into link
         const BestHitCell = document.createElement('td');
 
         const BestOrg = hitsData["BestOrg"]?.[0];
         const BestHit = hitsData["BestHit"]?.[0];
         const rowNum = row.row?.[0]; // get the actual row number
-        const CAASOrgs = ["A632", "Huangzaosi", "Jing724","Jing92", "Dan340", "PH207", "S37", "Xu178", "Ye478", "Zheng58"];
+        const CAASOrgs = ["A632", "Huangzaosi", "Jing724","Jing92", "Dan340", "PH207", "S37", "Xu178", "Ye478", "Zheng58"]; // CAAS genomes handled separately because they don't have browsers
 
         let BestHitLink;
-        if (CAASOrgs.includes(BestOrg)) { // CAAS genomes without browsers
+        if (CAASOrgs.includes(BestOrg)) { // CAAS genomes don't have browsers
             BestHitLink = `https://www.maizegdb.org/genome/assembly/Zm-${BestOrg}-REFERENCE-CAAS_FIL-1.0`;
         } else if (BestOrg === "Chang7 2") {
         	BestHitLink = `  https://www.maizegdb.org/genome/assembly/Zm-Chang-7_2-REFERENCE-CAAS_FIL-1.0`;
@@ -141,6 +142,7 @@ function generateTable(pageData) {
         BestHitCell.appendChild(bestHitLinkElement );
         rowElement.appendChild(BestHitCell);
 
+        // Example hit cells (sub-columns): example organism, E score, gene name, GO terms, and subcellular location
         const ExOrgCell = document.createElement('td');
         ExOrgCell.textContent = hitsData["ExOrg"];
         ExOrgCell.classList.add('divider-left'); // make divider
@@ -150,19 +152,16 @@ function generateTable(pageData) {
         ExECell.textContent = hitsData["ExE"];
         rowElement.appendChild(ExECell);
         
-        // Creating the UniProt Entry as a hyperlink
-const ExOrg = hitsData["ExOrg"]?.[0];
-const ExHit = hitsData["ExHit"]?.[0];
-//console.log(`Processing row for ExOrg: ${ExOrg}, ExHit: ${ExHit}`); // Debugging line
+        // Creating hyperlink for example hit
+        const ExOrg = hitsData["ExOrg"]?.[0];
+        const ExHit = hitsData["ExHit"]?.[0];
 
         let ExHitLink;
         if (ExOrg === "B73") {
         	ExHitLink = `https://jbrowse.maizegdb.org/?data=B73&loc=${encodeURIComponent(ExHit)}&tracks=gene_models_official%2Cuniprot_Escherichia_coli%2Cuniprot_Caenorhabditis_elegans%2Cuniprot_Chlamydomonas_reinhardtii%2Cuniprot_Chara_braunii%2Cuniprot_Ceratopteris_richardii%2Cuniprot_Arabidopsis_thaliana%2Cuniprot_Musa_acuminata%2Cuniprot_Ananas_comosus%2Cuniprot_Oryza_sativa%2Cuniprot_Panicum_virgatum%2Cuniprot_Sorghum_bicolor`;
         } else if (ExOrg === "Zea mays parviglumis TIL11") {
-            // Properly encode ExHit for JBrowse URL
             ExHitLink = `https://jbrowse.maizegdb.org/?data=Zv-TIL11&loc=${encodeURIComponent(ExHit)}&tracks=gene_models_official%2Cuniprot_Escherichia_coli%2Cuniprot_Caenorhabditis_elegans%2Cuniprot_Chlamydomonas_reinhardtii%2Cuniprot_Chara_braunii%2Cuniprot_Ceratopteris_richardii%2Cuniprot_Arabidopsis_thaliana%2Cuniprot_Musa_acuminata%2Cuniprot_Ananas_comosus%2Cuniprot_Oryza_sativa%2Cuniprot_Panicum_virgatum%2Cuniprot_Sorghum_bicolor`;
         } else if (ExOrg === "Zea diploperennis Gigi") {
-            // Properly encode ExHit for JBrowse URL
             ExHitLink = `https://jbrowse.maizegdb.org/?data=Zd-Gigi&loc=${encodeURIComponent(ExHit)}&tracks=gene_models_official%2Cuniprot_Escherichia_coli%2Cuniprot_Caenorhabditis_elegans%2Cuniprot_Chlamydomonas_reinhardtii%2Cuniprot_Chara_braunii%2Cuniprot_Ceratopteris_richardii%2Cuniprot_Arabidopsis_thaliana%2Cuniprot_Musa_acuminata%2Cuniprot_Ananas_comosus%2Cuniprot_Oryza_sativa%2Cuniprot_Panicum_virgatum%2Cuniprot_Sorghum_bicolor`;
         } else {
             ExHitLink = `https://www.uniprot.org/uniprotkb/${ExHit}`;
@@ -180,6 +179,7 @@ const ExHit = hitsData["ExHit"]?.[0];
         ExHitEntryCell.appendChild(linkElement);
         rowElement.appendChild(ExHitEntryCell);
 
+        // Add protein name, GO terms, and subcellular location cells
         const proteinNameCell = document.createElement('td');
         proteinNameCell.textContent = hitsData["Protein Name"];
         rowElement.appendChild(proteinNameCell);
@@ -191,10 +191,7 @@ const ExHit = hitsData["ExHit"]?.[0];
         const subcellularLocCell = document.createElement('td');
         subcellularLocCell.textContent = hitsData["Subcellular Loc"];
         rowElement.appendChild(subcellularLocCell);
-
  
-		
-        
         tbody.appendChild(rowElement);
     });
 
@@ -216,6 +213,7 @@ window.onload = function () {
     // Show spinner now
     document.getElementById("loadingOverlay").style.display = "flex";
 
+    // load the JSON data
     // fetch('cleaned_uniprot_table_loc.json')
     fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
     .then(response => {

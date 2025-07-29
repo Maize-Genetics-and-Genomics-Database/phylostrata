@@ -8,7 +8,6 @@ let currentSortDirection = 'asc'; // Track current sort direction
 let validGeneSet = new Set();
 let jsonReady = false;
 
-// fetch('image_code/gene_fill_mini.json')
 fetch('image_code/gene_fill.json')
   .then(response => response.json())
   .then(data => {
@@ -22,7 +21,7 @@ fetch('image_code/gene_fill.json')
     console.error("Error loading gene JSON:", error);
   });
 
-let cleanGeneIds = []; // Declare at the top (global)
+let cleanGeneIds = []; // Store cleaned gene IDs after validation
 
 function handleSearch() {
   const input = document.getElementById("geneInput").value.trim();
@@ -37,6 +36,7 @@ function handleSearch() {
   // And clear the gene data cache when starting a new search:
   geneDataCache = null; // Reset cache for new search
 
+  // Validate gene IDs and find invalid and duplicate IDs
   const seen = new Set();
   cleanGeneIds = [];
   const missingGenes = [];
@@ -75,11 +75,7 @@ function handleSearch() {
   const joinedIds = cleanGeneIds.join(",");
   const iframeUrl = `image_code/index.html?page=${encodeURIComponent(joinedIds)}`;
 
-  // generate url for image
-  // const joinedIds = geneIds.join(",");
-  // const iframeUrl = `image_code/index.html?page=${encodeURIComponent(joinedIds)}`;
-
-  //insert iframe for image
+  //insert iframe for search result image
   const container = document.getElementById("imageResults");
   container.innerHTML = ""; // Clear previous
 
@@ -102,7 +98,6 @@ function handleSearch() {
 
   const warningBox = document.getElementById("missingGenesWarning");
 
-  // container.innerHTML = "";
   warningBox.style.display = "none";
   warningBox.innerText = "";
 
@@ -110,15 +105,6 @@ function handleSearch() {
   resultsBar.style.display = geneIds.length > 0 ? "flex" : "none";
 
   document.getElementById("selectAllCheckbox").checked = false; // Reset checkboxes on new search
-
-  const optionsButtonContainer = document.getElementById("downloadOptionsContainer");
-
-  if (geneIds.length > 0) {
-    optionsButtonContainer.style.display = "block";
-  } else {
-    optionsButtonContainer.style.display = "none";
-  }
-
 
   updateWarningBox(missingGenes, duplicateGenes); // Show warnings after search loop ends
 
@@ -170,9 +156,6 @@ window.addEventListener('message', function(event) {
             selectAllCheckbox.checked = false;
             selectAllCheckbox.indeterminate = true;
         }
-
-        console.log('Selected genes received in parent:', selectedGenesFromIframe);
-        console.log(selectedGenesFromIframe.length);
     }
 });
 
@@ -282,7 +265,7 @@ function handleSortChange() {
   const sortSelect = document.getElementById("sortSelect");
   const selectedSort = sortSelect.value;
   
-  // Show loading state (optional)
+  // Show loading state
   const container = document.getElementById("imageResults");
   const currentIframe = container.querySelector("iframe");
   if (currentIframe) {
@@ -352,6 +335,7 @@ function updateSortDirectionButton() {
   }
 }
 
+// Move among the different sections of the webtool
 function showSectionFromHash() {
   const hash = window.location.hash || "#search";
   document.getElementById("search")?.style?.setProperty("display", "none");
@@ -416,16 +400,10 @@ function updateProgressBar(percent) {
   }
 
 function openDownloadModal() {
-  // const selectedCheckboxes = document.querySelectorAll(".img-checkbox:checked");
-  // const allCheckboxes = document.querySelectorAll(".img-checkbox");
-
-  // document.getElementById("selectedCount").textContent = selectedCheckboxes.length;
-  // document.getElementById("allCount").textContent = allCheckboxes.length;
   document.getElementById("allCount").textContent = cleanGeneIds.length;
 
   document.getElementById("downloadModal").style.display = "flex";
 }
-
 
 function closeDownloadModal() {
   document.getElementById("downloadModal").style.display = "none";
@@ -451,6 +429,7 @@ function handleDownload() {
   closeDownloadModal();
 }
 
+// fetch gene details HTML
 async function fetchGeneDetailHTML(geneID) {
   // Fetch base index.html with the injected geneID script + base tag (same as before)
   const response = await fetch(`gene_pages/index.html?page=${geneID}`);
@@ -466,7 +445,7 @@ async function fetchGeneDetailHTML(geneID) {
     match => `${match}\n    ${baseTag}\n    ${fallbackScript}`
   );
 
-  // Now create an offscreen iframe to render and wait for content ready, just like before
+  // create an offscreen iframe to render and wait for content 
   return new Promise((resolve, reject) => {
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
@@ -504,7 +483,7 @@ async function fetchGeneDetailHTML(geneID) {
   });
 }
 
-// add functions to download text versions of detail files
+// functions to download text versions of detail files
 function generateTextTable(pageData) {
     // Create row name list 
     const rowNames = [
@@ -583,7 +562,9 @@ async function downloadText(scope) {
     const geneID = genesToProcess[0];
     
     try {
-      const response = await fetch(`gene_pages/uniprot_table.json`);
+      // const response = await fetch(`gene_pages/cleaned_uniprot_table_loc.json`);
+      const response = await fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
+
       if (!response.ok) throw new Error("Failed to load JSON");
       const jsonData = await response.json();
       
@@ -609,7 +590,9 @@ async function downloadText(scope) {
   const zip = new JSZip();
 
   try {
-    const response = await fetch(`gene_pages/uniprot_table.json`);
+    // const response = await fetch(`gene_pages/cleaned_uniprot_table_loc.json`);
+    const response = await fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
+
     if (!response.ok) throw new Error("Failed to load JSON");
     const jsonData = await response.json();
 
@@ -635,7 +618,7 @@ async function downloadText(scope) {
     }
 
     const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, "Phylostratr_details_text.zip");
+    saveAs(content, "Phylostrata_details_text.zip");
     updateProgressBar(100);
     setTimeout(hideProgressBar, 800);
 
@@ -710,105 +693,13 @@ async function downloadDetails(scope) {
   }
 
   zip.generateAsync({ type: "blob" }).then(content => {
-    saveAs(content, "Phylostratr_details_html.zip");
+    saveAs(content, "Phylostrata_details_html.zip");
     updateProgressBar(100);
     setTimeout(hideProgressBar, 800);
   });
 }
 
-async function downloadIframeAsPng() {
-  const iframe = document.getElementById("dynamicImageIframe");
-
-  if (!iframe) {
-    alert("No image to download. Please search for genes first.");
-    return;
-  }
-
-  try {
-    showProgressBar();
-    updateProgressBar(10);
-
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    
-    if (!iframeDoc) {
-      throw new Error("Cannot access iframe content");
-    }
-
-    // Store references to all checkboxes and their parent elements
-    const checkboxInfo = [];
-    const checkboxes = iframeDoc.querySelectorAll('input[type="checkbox"], .img-checkbox, input[data-geneid]');
-    
-    console.log('Found checkboxes to temporarily remove:', checkboxes.length);
-    
-    checkboxes.forEach(checkbox => {
-      checkboxInfo.push({
-        element: checkbox,
-        parent: checkbox.parentNode,
-        nextSibling: checkbox.nextSibling
-      });
-      // Temporarily remove from DOM
-      checkbox.remove();
-    });
-
-    // Convert all images to data URLs first
-    await convertAllImagesToDataUrls(iframeDoc, iframe);
-    updateProgressBar(50);
-
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    updateProgressBar(60);
-
-    const bodyElement = iframeDoc.body;
-    console.log('Starting html2canvas capture of entire body...');
-
-    const canvas = await html2canvas(bodyElement, {
-      useCORS: true,
-      allowTaint: true,
-      scale: 3,
-      logging: false,
-      height: bodyElement.scrollHeight,
-      width: bodyElement.scrollWidth,
-      scrollX: 0,
-      scrollY: 0,
-      imageTimeout: 0,
-      onclone: (clonedDoc) => {
-        const style = clonedDoc.createElement('style');
-        style.textContent = `
-          * { overflow: visible !important; }
-          body { min-height: 800px !important; padding-bottom: 100px !important; }
-          .timeline-tickmark::before { white-space: pre-wrap !important; }
-        `;
-        clonedDoc.head.appendChild(style);
-      }
-    });
-
-    // Restore all checkboxes to their original positions
-    checkboxInfo.forEach(info => {
-      if (info.nextSibling) {
-        info.parent.insertBefore(info.element, info.nextSibling);
-      } else {
-        info.parent.appendChild(info.element);
-      }
-    });
-
-    updateProgressBar(80);
-
-    canvas.toBlob(function(blob) {
-      if (blob) {
-        const filename = `Phylostrata_search_results.png`;
-        saveAs(blob, filename);
-        updateProgressBar(100);
-        setTimeout(hideProgressBar, 800);
-      } else {
-        throw new Error('Failed to create image file');
-      }
-    }, 'image/png', 0.8);
-
-  } catch (error) {
-    console.error('Download failed:', error);
-    alert('Download failed: ' + error.message);
-    hideProgressBar();
-  }
-}
+// The following functions enable downloading results image as PNG
 async function downloadSelectedGenesAsPng(scope) {
   let genesToProcess;
 
@@ -826,13 +717,6 @@ async function downloadSelectedGenesAsPng(scope) {
       return;
     }
   }
-  // Get selected genes
-  // const genesToProcess = selectedGenesFromIframe.map(gene => gene.geneId);
-
-  // if (genesToProcess.length === 0) {
-  //   alert("No genes selected. Please select at least one gene to download.");
-  //   return;
-  // }
 
   try {
     showProgressBar();
@@ -888,7 +772,7 @@ async function downloadSelectedGenesAsPng(scope) {
       onclone: (clonedDoc) => {        
         // Check if checkboxes exist in cloned document
         const clonedCheckboxes = clonedDoc.querySelectorAll('.img-checkbox');
-        console.log('Checkboxes in cloned doc:', clonedCheckboxes.length);
+        // console.log('Checkboxes in cloned doc:', clonedCheckboxes.length);
         
         // Apply multiple methods to hide checkboxes
         const style = clonedDoc.createElement('style');
@@ -918,7 +802,7 @@ async function downloadSelectedGenesAsPng(scope) {
           checkbox.remove(); // Remove entirely
         });
         
-        console.log('Applied checkbox hiding styles and removed elements');
+        // console.log('Applied checkbox hiding styles and removed elements');
       }
     });
     
@@ -928,7 +812,7 @@ async function downloadSelectedGenesAsPng(scope) {
     canvas.toBlob(function(blob) {
       if (blob) {
         const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-        const filename = `Phylostrata_result_${genesToProcess.length}_genes.png`;
+        const filename = `Phylostrata_search_result.png`;
         saveAs(blob, filename);
         updateProgressBar(100);
         setTimeout(() => {
@@ -961,8 +845,6 @@ function createTempIframeForSelectedGenes(selectedGenes) {
   return new Promise((resolve) => {
     const joinedIds = selectedGenes.join(",");
     const iframeUrl = `image_code/index.html?page=${encodeURIComponent(joinedIds)}&hideCheckboxes=true`;
-
-    console.log('Creating iframe with URL:', iframeUrl); // DEBUG
 
     const baseHeight = 300;
     const heightPerGene = 50;
