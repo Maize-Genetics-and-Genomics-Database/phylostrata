@@ -562,8 +562,8 @@ async function downloadText(scope) {
     const geneID = genesToProcess[0];
     
     try {
-      // const response = await fetch(`gene_pages/cleaned_uniprot_table_loc.json`);
-      const response = await fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
+      const response = await fetch(`gene_pages/cleaned_uniprot_table_loc.json`);
+      // const response = await fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
 
       if (!response.ok) throw new Error("Failed to load JSON");
       const jsonData = await response.json();
@@ -590,8 +590,8 @@ async function downloadText(scope) {
   const zip = new JSZip();
 
   try {
-    // const response = await fetch(`gene_pages/cleaned_uniprot_table_loc.json`);
-    const response = await fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
+    const response = await fetch(`gene_pages/cleaned_uniprot_table_loc.json`);
+    // const response = await fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
 
     if (!response.ok) throw new Error("Failed to load JSON");
     const jsonData = await response.json();

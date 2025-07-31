@@ -214,8 +214,8 @@ window.onload = function () {
     document.getElementById("loadingOverlay").style.display = "flex";
 
     // load the JSON data
-    // fetch('cleaned_uniprot_table_loc.json')
-    fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
+    fetch('cleaned_uniprot_table_loc.json')
+    // fetch('https://download.maizegdb.org/data_templates/phylostrata/cleaned_uniprot_table_loc.json')
     .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to load JSON data');
