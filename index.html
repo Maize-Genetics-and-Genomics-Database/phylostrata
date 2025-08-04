@@ -42,7 +42,7 @@
     <h2>Search for Genes</h2>
     <p>Enter up to 100 genes, with one gene ID per line (use <a href="https://maizegdb.org/genome/assembly/Zm-B73-REFERENCE-NAM-5.0">Zm-B73-REFERENCE-NAM-5.0</a> gene IDs):</p>
 
-    <textarea id="geneInput" placeholder="Zm00001eb031900&#10;Zm00001eb364140"></textarea>
+    <textarea id="geneInput" placeholder="Zm00001eb181160&#10;Zm00001eb071070"></textarea>
 
     <div class="buttons-row">
       <button onclick="populateExampleGenes()">Try Example Genes</button>
@@ -182,38 +182,69 @@
 
 <section id="downloadsSection" style="display: none; padding: 1rem;">
   <h2>Downloads</h2>
+  <h3>Results files: </h3>
   <p>Download phylostrata results for each of the NAM founders:</p>
- <!-- <p> <a href="other_images/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostratr_results.csv.gz" download>Download</a> phylostrata results for the full B73 genome (Zm-B73-REFERENCE-NAM-5.0).</p> -->
+<p>
+    <a href="other_images/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostrata_results.csv.gz" download>Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-B97-REFERENCE-NAM-1.0_Zm00018ab.1_phylostrata_results.csv.gz" download>Zm-B97-REFERENCE-NAM-1.0_Zm00018ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML103-REFERENCE-NAM-1.0_Zm00021ab.1_phylostrata_results.csv.gz" download>Zm-CML103-REFERENCE-NAM-1.0_Zm00021ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML228-REFERENCE-NAM-1.0_Zm00022ab.1_phylostrata_results.csv.gz" download>Zm-CML228-REFERENCE-NAM-1.0_Zm00022ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML247-REFERENCE-NAM-1.0_Zm00023ab.1_phylostrata_results.csv.gz" download>Zm-CML247-REFERENCE-NAM-1.0_Zm00023ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML277-REFERENCE-NAM-1.0_Zm00024ab.1_phylostrata_results.csv.gz" download>Zm-CML277-REFERENCE-NAM-1.0_Zm00024ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML322-REFERENCE-NAM-1.0_Zm00025ab.1_phylostrata_results.csv.gz" download>Zm-CML322-REFERENCE-NAM-1.0_Zm00025ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML333-REFERENCE-NAM-1.0_Zm00026ab.1_phylostrata_results.csv.gz" download>Zm-CML333-REFERENCE-NAM-1.0_Zm00026ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML52-REFERENCE-NAM-1.0_Zm00019ab.1_phylostrata_results.csv.gz" download>Zm-CML52-REFERENCE-NAM-1.0_Zm00019ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-CML69-REFERENCE-NAM-1.0_Zm00020ab.1_phylostrata_results.csv.gz" download>Zm-CML69-REFERENCE-NAM-1.0_Zm00020ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-HP301-REFERENCE-NAM-1.0_Zm00027ab.1_phylostrata_results.csv.gz" download>Zm-HP301-REFERENCE-NAM-1.0_Zm00027ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Il14H-REFERENCE-NAM-1.0_Zm00028ab.1_phylostrata_results.csv.gz" download>Zm-Il14H-REFERENCE-NAM-1.0_Zm00028ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Ki11-REFERENCE-NAM-1.0_Zm00030ab.1_phylostrata_results.csv.gz" download>Zm-Ki11-REFERENCE-NAM-1.0_Zm00030ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Ki3-REFERENCE-NAM-1.0_Zm00029ab.1_phylostrata_results.csv.gz" download>Zm-Ki3-REFERENCE-NAM-1.0_Zm00029ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Ky21-REFERENCE-NAM-1.0_Zm00031ab.1_phylostrata_results.csv.gz" download>Zm-Ky21-REFERENCE-NAM-1.0_Zm00031ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-M162W-REFERENCE-NAM-1.0_Zm00033ab.1_phylostrata_results.csv.gz" download>Zm-M162W-REFERENCE-NAM-1.0_Zm00033ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-M37W-REFERENCE-NAM-1.0_Zm00032ab.1_phylostrata_results.csv.gz" download>Zm-M37W-REFERENCE-NAM-1.0_Zm00032ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Mo18W-REFERENCE-NAM-1.0_Zm00034ab.1_phylostrata_results.csv.gz" download>Zm-Mo18W-REFERENCE-NAM-1.0_Zm00034ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Ms71-REFERENCE-NAM-1.0_Zm00035ab.1_phylostrata_results.csv.gz" download>Zm-Ms71-REFERENCE-NAM-1.0_Zm00035ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-NC350-REFERENCE-NAM-1.0_Zm00036ab.1_phylostrata_results.csv.gz" download>Zm-NC350-REFERENCE-NAM-1.0_Zm00036ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-NC358-REFERENCE-NAM-1.0_Zm00037ab.1_phylostrata_results.csv.gz" download>Zm-NC358-REFERENCE-NAM-1.0_Zm00037ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Oh43-REFERENCE-NAM-1.0_Zm00039ab.1_phylostrata_results.csv.gz" download>Zm-Oh43-REFERENCE-NAM-1.0_Zm00039ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Oh7B-REFERENCE-NAM-1.0_Zm00038ab.1_phylostrata_results.csv.gz" download>Zm-Oh7B-REFERENCE-NAM-1.0_Zm00038ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-P39-REFERENCE-NAM-1.0_Zm00040ab.1_phylostrata_results.csv.gz" download>Zm-P39-REFERENCE-NAM-1.0_Zm00040ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Tx303-REFERENCE-NAM-1.0_Zm00041ab.1_phylostrata_results.csv.gz" download>Zm-Tx303-REFERENCE-NAM-1.0_Zm00041ab.1_phylostrata_results.csv.gz</a><br>
+    <a href="other_images/Zm-Tzi8-REFERENCE-NAM-1.0_Zm00042ab.1_phylostrata_results.csv.gz" download>Zm-Tzi8-REFERENCE-NAM-1.0_Zm00042ab.1_phylostrata_results.csv.gz</a><br>
+  </p>
+  <h3>Details files: </h3>
+  <p>Download detailed results (includes example species GO terms, etc.) for each of the NAM founders:</p>
+ <!-- <p> <a href="other_images/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostrata_details.csv.gz" download>Download</a> phylostrata results for the full B73 genome (Zm-B73-REFERENCE-NAM-5.0).</p> -->
   <p>
-    <a href="other_images/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostratr_results.csv.gz" download>Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-B97-REFERENCE-NAM-1.0_Zm00018ab.1_phylostratr_results.csv.gz" download>Zm-B97-REFERENCE-NAM-1.0_Zm00018ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML103-REFERENCE-NAM-1.0_Zm00021ab.1_phylostratr_results.csv.gz" download>Zm-CML103-REFERENCE-NAM-1.0_Zm00021ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML228-REFERENCE-NAM-1.0_Zm00022ab.1_phylostratr_results.csv.gz" download>Zm-CML228-REFERENCE-NAM-1.0_Zm00022ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML247-REFERENCE-NAM-1.0_Zm00023ab.1_phylostratr_results.csv.gz" download>Zm-CML247-REFERENCE-NAM-1.0_Zm00023ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML277-REFERENCE-NAM-1.0_Zm00024ab.1_phylostratr_results.csv.gz" download>Zm-CML277-REFERENCE-NAM-1.0_Zm00024ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML322-REFERENCE-NAM-1.0_Zm00025ab.1_phylostratr_results.csv.gz" download>Zm-CML322-REFERENCE-NAM-1.0_Zm00025ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML333-REFERENCE-NAM-1.0_Zm00026ab.1_phylostratr_results.csv.gz" download>Zm-CML333-REFERENCE-NAM-1.0_Zm00026ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML52-REFERENCE-NAM-1.0_Zm00019ab.1_phylostratr_results.csv.gz" download>Zm-CML52-REFERENCE-NAM-1.0_Zm00019ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-CML69-REFERENCE-NAM-1.0_Zm00020ab.1_phylostratr_results.csv.gz" download>Zm-CML69-REFERENCE-NAM-1.0_Zm00020ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-HP301-REFERENCE-NAM-1.0_Zm00027ab.1_phylostratr_results.csv.gz" download>Zm-HP301-REFERENCE-NAM-1.0_Zm00027ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Il14H-REFERENCE-NAM-1.0_Zm00028ab.1_phylostratr_results.csv.gz" download>Zm-Il14H-REFERENCE-NAM-1.0_Zm00028ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Ki11-REFERENCE-NAM-1.0_Zm00030ab.1_phylostratr_results.csv.gz" download>Zm-Ki11-REFERENCE-NAM-1.0_Zm00030ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Ki3-REFERENCE-NAM-1.0_Zm00029ab.1_phylostratr_results.csv.gz" download>Zm-Ki3-REFERENCE-NAM-1.0_Zm00029ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Ky21-REFERENCE-NAM-1.0_Zm00031ab.1_phylostratr_results.csv.gz" download>Zm-Ky21-REFERENCE-NAM-1.0_Zm00031ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-M162W-REFERENCE-NAM-1.0_Zm00033ab.1_phylostratr_results.csv.gz" download>Zm-M162W-REFERENCE-NAM-1.0_Zm00033ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-M37W-REFERENCE-NAM-1.0_Zm00032ab.1_phylostratr_results.csv.gz" download>Zm-M37W-REFERENCE-NAM-1.0_Zm00032ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Mo18W-REFERENCE-NAM-1.0_Zm00034ab.1_phylostratr_results.csv.gz" download>Zm-Mo18W-REFERENCE-NAM-1.0_Zm00034ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Ms71-REFERENCE-NAM-1.0_Zm00035ab.1_phylostratr_results.csv.gz" download>Zm-Ms71-REFERENCE-NAM-1.0_Zm00035ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-NC350-REFERENCE-NAM-1.0_Zm00036ab.1_phylostratr_results.csv.gz" download>Zm-NC350-REFERENCE-NAM-1.0_Zm00036ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-NC358-REFERENCE-NAM-1.0_Zm00037ab.1_phylostratr_results.csv.gz" download>Zm-NC358-REFERENCE-NAM-1.0_Zm00037ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Oh43-REFERENCE-NAM-1.0_Zm00039ab.1_phylostratr_results.csv.gz" download>Zm-Oh43-REFERENCE-NAM-1.0_Zm00039ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Oh7B-REFERENCE-NAM-1.0_Zm00038ab.1_phylostratr_results.csv.gz" download>Zm-Oh7B-REFERENCE-NAM-1.0_Zm00038ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-P39-REFERENCE-NAM-1.0_Zm00040ab.1_phylostratr_results.csv.gz" download>Zm-P39-REFERENCE-NAM-1.0_Zm00040ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Tx303-REFERENCE-NAM-1.0_Zm00041ab.1_phylostratr_results.csv.gz" download>Zm-Tx303-REFERENCE-NAM-1.0_Zm00041ab.1_phylostratr_results.csv.gz</a><br>
-    <a href="other_images/Zm-Tzi8-REFERENCE-NAM-1.0_Zm00042ab.1_phylostratr_results.csv.gz" download>Zm-Tzi8-REFERENCE-NAM-1.0_Zm00042ab.1_phylostratr_results.csv.gz</a><br>
+    <a href="other_images/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostrata_details.csv.gz" download>Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-B97-REFERENCE-NAM-1.0_Zm00018ab.1_phylostrata_details.csv.gz" download>Zm-B97-REFERENCE-NAM-1.0_Zm00018ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML103-REFERENCE-NAM-1.0_Zm00021ab.1_phylostrata_details.csv.gz" download>Zm-CML103-REFERENCE-NAM-1.0_Zm00021ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML228-REFERENCE-NAM-1.0_Zm00022ab.1_phylostrata_details.csv.gz" download>Zm-CML228-REFERENCE-NAM-1.0_Zm00022ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML247-REFERENCE-NAM-1.0_Zm00023ab.1_phylostrata_details.csv.gz" download>Zm-CML247-REFERENCE-NAM-1.0_Zm00023ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML277-REFERENCE-NAM-1.0_Zm00024ab.1_phylostrata_details.csv.gz" download>Zm-CML277-REFERENCE-NAM-1.0_Zm00024ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML322-REFERENCE-NAM-1.0_Zm00025ab.1_phylostrata_details.csv.gz" download>Zm-CML322-REFERENCE-NAM-1.0_Zm00025ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML333-REFERENCE-NAM-1.0_Zm00026ab.1_phylostrata_details.csv.gz" download>Zm-CML333-REFERENCE-NAM-1.0_Zm00026ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML52-REFERENCE-NAM-1.0_Zm00019ab.1_phylostrata_details.csv.gz" download>Zm-CML52-REFERENCE-NAM-1.0_Zm00019ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-CML69-REFERENCE-NAM-1.0_Zm00020ab.1_phylostrata_details.csv.gz" download>Zm-CML69-REFERENCE-NAM-1.0_Zm00020ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-HP301-REFERENCE-NAM-1.0_Zm00027ab.1_phylostrata_details.csv.gz" download>Zm-HP301-REFERENCE-NAM-1.0_Zm00027ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Il14H-REFERENCE-NAM-1.0_Zm00028ab.1_phylostrata_details.csv.gz" download>Zm-Il14H-REFERENCE-NAM-1.0_Zm00028ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Ki11-REFERENCE-NAM-1.0_Zm00030ab.1_phylostrata_details.csv.gz" download>Zm-Ki11-REFERENCE-NAM-1.0_Zm00030ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Ki3-REFERENCE-NAM-1.0_Zm00029ab.1_phylostrata_details.csv.gz" download>Zm-Ki3-REFERENCE-NAM-1.0_Zm00029ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Ky21-REFERENCE-NAM-1.0_Zm00031ab.1_phylostrata_details.csv.gz" download>Zm-Ky21-REFERENCE-NAM-1.0_Zm00031ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-M162W-REFERENCE-NAM-1.0_Zm00033ab.1_phylostrata_details.csv.gz" download>Zm-M162W-REFERENCE-NAM-1.0_Zm00033ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-M37W-REFERENCE-NAM-1.0_Zm00032ab.1_phylostrata_details.csv.gz" download>Zm-M37W-REFERENCE-NAM-1.0_Zm00032ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Mo18W-REFERENCE-NAM-1.0_Zm00034ab.1_phylostrata_details.csv.gz" download>Zm-Mo18W-REFERENCE-NAM-1.0_Zm00034ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Ms71-REFERENCE-NAM-1.0_Zm00035ab.1_phylostrata_details.csv.gz" download>Zm-Ms71-REFERENCE-NAM-1.0_Zm00035ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-NC350-REFERENCE-NAM-1.0_Zm00036ab.1_phylostrata_details.csv.gz" download>Zm-NC350-REFERENCE-NAM-1.0_Zm00036ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-NC358-REFERENCE-NAM-1.0_Zm00037ab.1_phylostrata_details.csv.gz" download>Zm-NC358-REFERENCE-NAM-1.0_Zm00037ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Oh43-REFERENCE-NAM-1.0_Zm00039ab.1_phylostrata_details.csv.gz" download>Zm-Oh43-REFERENCE-NAM-1.0_Zm00039ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Oh7B-REFERENCE-NAM-1.0_Zm00038ab.1_phylostrata_details.csv.gz" download>Zm-Oh7B-REFERENCE-NAM-1.0_Zm00038ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-P39-REFERENCE-NAM-1.0_Zm00040ab.1_phylostrata_details.csv.gz" download>Zm-P39-REFERENCE-NAM-1.0_Zm00040ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Tx303-REFERENCE-NAM-1.0_Zm00041ab.1_phylostrata_details.csv.gz" download>Zm-Tx303-REFERENCE-NAM-1.0_Zm00041ab.1_phylostrata_details.csv.gz</a><br>
+    <a href="other_images/Zm-Tzi8-REFERENCE-NAM-1.0_Zm00042ab.1_phylostrata_details.csv.gz" download>Zm-Tzi8-REFERENCE-NAM-1.0_Zm00042ab.1_phylostrata_details.csv.gz</a><br>
   </p>
 <p>
-  <h3>File details</h3>
+  <h4>Details file description: </h4>
     Each file contain one row per gene per phylostratum. The longest transcript of each gene is used. There are 13 columns:
     <ul>
       <!-- <li><strong>id</strong>: Gene ID (from <a href="https://maizegdb.org/genome/assembly/Zm-B73-REFERENCE-NAM-5.0">Zm-B73-REFERENCE-NAM-5.0</a>).</li> -->

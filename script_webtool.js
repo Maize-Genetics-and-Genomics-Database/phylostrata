@@ -390,10 +390,10 @@ function updateProgressBar(percent) {
 
   function populateExampleGenes() {
     const exampleGenes = [
-      "Zm00001eb031900",
-      "Zm00001eb364140",
-      "Zm00001eb154400",
-      "Zm00001eb107480"
+      "Zm00001eb181160",
+      "Zm00001eb071070",
+      "Zm00001eb079890",
+      "Zm00001eb416250"
     ];
     document.getElementById("geneInput").value = exampleGenes.join("\n");
     handleSearch(); // Automatically trigger the search
