@@ -931,3 +931,47 @@ function simpleImageToDataUrl(src, iframe) {
     }
   });
 }
+
+// download all NAM genome-wide files
+async function downloadZipByPattern(pattern, zipName) {
+  const overlay = document.getElementById('loadingOverlayDownloads');
+  overlay.style.display = 'flex'; // Show loading overlay
+
+  const zip = new JSZip();
+  const links = document.querySelectorAll('a[download]');
+  const folder = zip.folder(pattern);
+
+  try {
+    for (const link of links) {
+      const href = link.getAttribute('href');
+      if (href.includes(pattern)) {
+        const filename = href.split('/').pop();
+        const response = await fetch(href);
+        if (!response.ok) throw new Error(`Failed to fetch ${filename}`);
+        const blob = await response.blob();
+        folder.file(filename, blob);
+      }
+    }
+
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    saveAs(zipBlob, zipName);
+  } catch (error) {
+    console.error('Error during ZIP creation:', error);
+    alert('There was a problem downloading the files. Please try again.');
+  } finally {
+    overlay.style.display = 'none'; // Always hide overlay when done
+  }
+}
+
+document.getElementById('download-details-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  downloadZipByPattern('phylostrata_details', 'NAM_phylostrata_details.zip');
+});
+
+document.getElementById('download-results-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  downloadZipByPattern('phylostrata_results', 'NAM_phylostrata_results.zip');
+});
+
+
+
