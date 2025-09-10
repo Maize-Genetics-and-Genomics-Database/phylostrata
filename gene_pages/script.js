@@ -37,10 +37,10 @@ function generateTable(pageData) {
     const subHeaderRow = document.createElement('tr');
     subHeaderRow.innerHTML = `
         <th class="divider-left">Organism</th> 
-        <th>E score</th>
+        <th>E value</th>
         <th>Gene</th>
         <th class="divider-left">Organism</th> 
-        <th>E score</th>
+        <th>E value</th>
         <th>Gene</th>
         <th>Name</th>
         <th>GO terms</th>
@@ -67,7 +67,7 @@ function generateTable(pageData) {
         rowElement.appendChild(detectedInCell);
         
 
-        // Best hit cells (sub-columns): best organism, E score, and gene name
+        // Best hit cells (sub-columns): best organism, E value, and gene name
         const hitsData = row.hits;
         
         const BestOrgCell = document.createElement('td');
@@ -142,7 +142,7 @@ function generateTable(pageData) {
         BestHitCell.appendChild(bestHitLinkElement );
         rowElement.appendChild(BestHitCell);
 
-        // Example hit cells (sub-columns): example organism, E score, gene name, GO terms, and subcellular location
+        // Example hit cells (sub-columns): example organism, E value, gene name, GO terms, and subcellular location
         const ExOrgCell = document.createElement('td');
         ExOrgCell.textContent = hitsData["ExOrg"];
         ExOrgCell.classList.add('divider-left'); // make divider
