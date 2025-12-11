@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Maize Phylostrata Tool</title>
 <link rel="stylesheet" href="style_webtool.css">  
+  <!-- add script for contact form -->
+  <script type='text/javascript' src='https://maizegdb.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/-3o5b4z/b/5/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=883299e6'></script>
 <!-- add jszip to enable downloading zipped images -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -181,7 +183,8 @@
   
   <h2>Credits</h2>
   <p>
-    Contact us at: <a href="mailto:mgdb@iastate.edu">mgdb@iastate.edu</a>
+    <!-- Contact us at: <a href="mailto:mgdb@iastate.edu">mgdb@iastate.edu</a> -->
+    <a href="#" class="feedback-form">Contact us</a> with questions or feedback.
   </p>
 </section>
 
@@ -328,6 +331,24 @@
   Cancel Download
 </button>
 </div>
+<!-- feedback form -->
+<script type="text/javascript">
+    window.ATL_JQ_PAGE_PROPS = {
+  	  '883299e6': {  // feedback
+  	    "triggerFunction": function(showCollectorDialog\) {
+          //Requires that jQuery is available! 
+          jQuery(".feedback-form"\).click(function(e\) {
+			      e.preventDefault(\);
+			      showCollectorDialog(\);
+		      }\);
+	      },
+	      fieldValues: {
+	        recordWebInfo: '1', // field Name
+          recordWebInfoConsent: ['1'] // field Id
+	      }
+	    }
+    };
+	</script>
 
 </body>
 </html>
