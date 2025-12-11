@@ -184,7 +184,7 @@
   <h2>Credits</h2>
   <p>
     <!-- Contact us at: <a href="mailto:mgdb@iastate.edu">mgdb@iastate.edu</a> -->
-    <a href="#" class="feedback-form">Contact us</a> with questions or feedback.
+    <a href="#about" class="feedback-form">Contact us</a> with questions or feedback.
   </p>
 </section>
 
@@ -335,12 +335,12 @@
 <script type="text/javascript">
     window.ATL_JQ_PAGE_PROPS = {
   	  '883299e6': {  // feedback
-  	    "triggerFunction": function(showCollectorDialog\) {
+  	    "triggerFunction": function(showCollectorDialog) {
           //Requires that jQuery is available! 
-          jQuery(".feedback-form"\).click(function(e\) {
-			      e.preventDefault(\);
-			      showCollectorDialog(\);
-		      }\);
+          jQuery(".feedback-form").click(function(e) {
+			      e.preventDefault();
+			      showCollectorDialog();
+		      });
 	      },
 	      fieldValues: {
 	        recordWebInfo: '1', // field Name
