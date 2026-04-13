@@ -982,8 +982,8 @@ document.getElementById('download-results-link').addEventListener('click', (e) =
   downloadZipByPattern('phylostrata_results', 'NAM_phylostrata_results.zip');
 });
 
-document.getElementById('download-blast-link').addEventListener('click', (e) => {
-  e.preventDefault();
-  downloadZipByPattern('blast_results', 'NAM_phylostrata_blast_results.zip');
-});
+// document.getElementById('download-blast-link').addEventListener('click', (e) => {
+//   e.preventDefault();
+//   downloadZipByPattern('blast/blast_results', 'NAM_phylostrata_blast_results.zip');
+// });
 
