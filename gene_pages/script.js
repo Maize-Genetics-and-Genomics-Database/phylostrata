@@ -63,7 +63,12 @@ function generateTable(pageData) {
 
         // "Detected in" cell
         const detectedInCell = document.createElement('td');
-        detectedInCell.textContent = row['detect.frac'];
+        const detectedInLink = document.createElement('a');
+        detectedInLink.textContent = row['detect.frac'];
+        detectedInLink.href = `blast_results.html?page=${encodeURIComponent(pageData.id)}&row=${row.row}`;
+        detectedInLink.title = "View BLAST results for this stratum";
+        detectedInLink.target = "_blank";  // open in new tab
+        detectedInCell.appendChild(detectedInLink);
         rowElement.appendChild(detectedInCell);
         
 
